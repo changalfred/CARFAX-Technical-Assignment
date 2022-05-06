@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name"></string>
+    <string name="company_name">CARFAX</string>
 </resources>
