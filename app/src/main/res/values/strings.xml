@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name"></string>
     <string name="company_name">CARFAX</string>
+
+    <string name="straight_slash">|</string>
+    <string name="call_dealer_button_text">CALL DEALER</string>
 </resources>
