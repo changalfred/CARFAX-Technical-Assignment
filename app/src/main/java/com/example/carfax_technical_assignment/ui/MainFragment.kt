@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carfax_technical_assignment.R
-import com.example.carfax_technical_assignment.adapters.CarAdapter
+import com.example.carfax_technical_assignment.adapters.VehicleAdapter
 import com.example.carfax_technical_assignment.model.Vehicle
 
 class MainFragment : Fragment() {
@@ -23,7 +23,7 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         val vehicleDataset = emptyArray<Vehicle>()
-        val adapter = CarAdapter(vehicleDataset)
+        val adapter = VehicleAdapter(vehicleDataset)
         recyclerView.adapter = adapter
 
         return rootView
