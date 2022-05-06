@@ -21,32 +21,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/car_title_layout"
+            android:id="@+id/vehicle_title_layout"
             app:layout_constraintTop_toBottomOf="@id/vehicle_image"
             app:layout_constraintLeft_toLeftOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_year"
+                android:id="@+id/vehicle_year"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_make"
+                android:id="@+id/vehicle_make"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_model"
+                android:id="@+id/vehicle_model"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_trim"
+                android:id="@+id/vehicle_trim"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -55,14 +55,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/car_status_layout"
-            app:layout_constraintTop_toBottomOf="@id/car_title_layout"
+            android:id="@+id/vehicle_status_layout"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_title_layout"
             app:layout_constraintLeft_toLeftOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_price" />
+                android:id="@+id/vehicle_price" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_mileage" />
+                android:id="@+id/vehicle_mileage" />
 
         </LinearLayout>
 
@@ -80,19 +80,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/car_location_layout"
-            app:layout_constraintTop_toBottomOf="@id/car_status_layout"
+            android:id="@+id/vehicle_location_layout"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_status_layout"
             app:layout_constraintLeft_toLeftOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_city" />
+                android:id="@+id/vehicle_city" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/car_state" />
+                android:id="@+id/vehicle_state" />
 
         </LinearLayout>
 
@@ -101,7 +101,7 @@
             android:layout_height="1dp"
             android:id="@+id/divider"
             android:background="@color/divider_colour"
-            app:layout_constraintTop_toBottomOf="@id/car_location_layout"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_location_layout"
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <Button
