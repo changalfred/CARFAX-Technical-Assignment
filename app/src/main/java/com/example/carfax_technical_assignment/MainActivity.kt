@@ -2,6 +2,7 @@ package com.example.carfax_technical_assignment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.carfax_technical_assignment.ui.MainFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +15,4 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
-
-
 }
