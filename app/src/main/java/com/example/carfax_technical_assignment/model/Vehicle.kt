@@ -13,3 +13,5 @@ data class Vehicle(
     var city: String?,
     var state: String?
 )
+
+data class

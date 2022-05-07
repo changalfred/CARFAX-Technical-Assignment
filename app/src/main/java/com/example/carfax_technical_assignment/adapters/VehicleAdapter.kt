@@ -11,7 +11,7 @@ import com.example.carfax_technical_assignment.R
 import com.example.carfax_technical_assignment.model.Vehicle
 import com.google.android.material.snackbar.Snackbar
 
-class VehicleAdapter(val vehicleDataset: Array<Vehicle>) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
+class VehicleAdapter(private val vehicleDataset: Array<Vehicle>) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
