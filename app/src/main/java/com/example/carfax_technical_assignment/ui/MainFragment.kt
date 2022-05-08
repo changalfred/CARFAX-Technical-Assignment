@@ -1,7 +1,6 @@
 package com.example.carfax_technical_assignment.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import com.example.carfax_technical_assignment.R
 import com.example.carfax_technical_assignment.adapters.VehicleAdapter
 import com.example.carfax_technical_assignment.model.Vehicle
 import com.example.carfax_technical_assignment.model.VehiclesResult
-import com.example.carfax_technical_assignment.network.RetrofitService
+import com.example.carfax_technical_assignment.objects.RetrofitService
 import com.example.carfax_technical_assignment.util.LogUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +19,10 @@ import retrofit2.Response
 
 class MainFragment : Fragment() {
 
-    lateinit var apiInterface: RetrofitService
+    lateinit var apiClient: RetrofitService
+
+    var vehicleDataset: MutableList<Vehicle> = mutableListOf()
+    var adapter: VehicleAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,29 +32,31 @@ class MainFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
+        apiClient = RetrofitService.create()
+
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerview_car_items)
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-        val vehicleDataset = emptyArray<Vehicle>()
-        val adapter = VehicleAdapter(vehicleDataset)
+        adapter = VehicleAdapter(requireContext())
         recyclerView.adapter = adapter
 
-        apiInterface = RetrofitService.create()
         getVehiclesFromNetwork()
+        println("Dataset: $vehicleDataset")
+
+        recyclerView.setHasFixedSize(true)
 
         return rootView
     }
 
     private fun getVehiclesFromNetwork() {
-        val vehiclesResponse = apiInterface.getVehicles()
+        val vehiclesResponse = apiClient.getVehicles()
         vehiclesResponse.enqueue(object : Callback<VehiclesResult> {
             override fun onResponse(call: Call<VehiclesResult>, response: Response<VehiclesResult>) {
                 val jsonResult = response.body()
-                var count = 0
                 if (jsonResult != null) {
                     for (vehicle in jsonResult.listings) {
-                        LogUtils.log("Vehicle: $vehicle")
+                        vehicleDataset.add(vehicle)
                     }
+                    adapter?.setDataset(vehicleDataset)
                 }
             }
 

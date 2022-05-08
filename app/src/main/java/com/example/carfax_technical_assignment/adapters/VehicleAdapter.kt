@@ -1,5 +1,7 @@
 package com.example.carfax_technical_assignment.adapters
 
+import android.content.Context
+import android.service.autofill.Dataset
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +9,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.carfax_technical_assignment.R
 import com.example.carfax_technical_assignment.model.Vehicle
+import com.example.carfax_technical_assignment.util.LogUtils
 import com.google.android.material.snackbar.Snackbar
 
-class VehicleAdapter(private val vehicleDataset: Array<Vehicle>) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
+class VehicleAdapter(val context: Context) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
+
+    private var vehicleDataset: MutableList<Vehicle> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -22,35 +28,40 @@ class VehicleAdapter(private val vehicleDataset: Array<Vehicle>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val vehicle = vehicleDataset[position]
+        println("Vehicle: $vehicle")
 
         val image = holder.image
-        vehicle.image = image
+        Glide.with(context)
+            .load(vehicle.images?.firstPhoto?.large)
+//            .placeholder(R.color.white)
+            .into(image)
 
-        val year = holder.year.text
-        vehicle.year = year.toString()
+        val year = holder.year
+        year.text = vehicle.year
 
         val make = holder.make
-        vehicle.make = make.toString()
+        make.text = vehicle.make
 
         val model = holder.model
-        vehicle.model = model.toString()
+        model.text = vehicle.model
 
         val trim = holder.trim
-        vehicle.trim = trim.toString()
+        trim.text = vehicle.trim
 
         val price = holder.price
-        vehicle.price = price.toString()
+        price.text = vehicle.currentPrice.toString()
 
         val mileage = holder.mileage
-        vehicle.mileage = mileage.toString()
+        mileage.text = vehicle.mileage.toString()
 
         val city = holder.city
-        vehicle.city = city.toString()
+        city.text = vehicle.dealer?.city
 
         val state = holder.state
-        vehicle.state = state.toString()
+        state.text = vehicle.dealer?.state
 
         val callButton = holder.callButton
+        val dealerNumber = vehicle.dealer?.phone
         callButton.setOnClickListener {
             Snackbar.make(it, "Replace with call action.", Snackbar.LENGTH_SHORT)
                 .show()
@@ -59,6 +70,11 @@ class VehicleAdapter(private val vehicleDataset: Array<Vehicle>) : RecyclerView.
 
     override fun getItemCount(): Int {
         return vehicleDataset.size
+    }
+
+    fun setDataset(dataset: MutableList<Vehicle>) {
+        vehicleDataset = dataset
+        notifyDataSetChanged()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
