@@ -5,16 +5,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.carfax_technical_assignment.model.Vehicle
+import com.bumptech.glide.Glide
+import com.example.carfax_technical_assignment.R
 
-class DetailFragment(private val vehicleItem: View) : Fragment() {
+class DetailFragment(private val vehicleView: View) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        println("Received item: $vehicleItem")
-        return super.onCreateView(inflater, container, savedInstanceState)
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        val rootView = inflater.inflate(R.layout.fragment_detail, container, false)
+
+        renderImage()
+
+        println("Received item: $vehicleView")
+        return rootView
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        activity?.actionBar?.hide()
+    }
+
+    private fun renderImage() {
+        Glide.with(requireContext())
+            .load(vehicleView.context)
     }
 }
