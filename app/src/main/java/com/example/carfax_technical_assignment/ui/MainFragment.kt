@@ -5,19 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carfax_technical_assignment.ClickHandler
 import com.example.carfax_technical_assignment.R
 import com.example.carfax_technical_assignment.adapters.VehicleAdapter
 import com.example.carfax_technical_assignment.model.Vehicle
 import com.example.carfax_technical_assignment.model.VehiclesResult
 import com.example.carfax_technical_assignment.objects.RetrofitService
 import com.example.carfax_technical_assignment.util.LogUtils
+import com.example.carfax_technical_assignment.viewmodel.SharedViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), ClickHandler {
+    val sharedViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    }
 
     lateinit var apiClient: RetrofitService
 
@@ -48,7 +54,10 @@ class MainFragment : Fragment() {
     private fun getVehiclesFromNetwork() {
         val vehiclesResponse = apiClient.getVehicles()
         vehiclesResponse.enqueue(object : Callback<VehiclesResult> {
-            override fun onResponse(call: Call<VehiclesResult>, response: Response<VehiclesResult>) {
+            override fun onResponse(
+                call: Call<VehiclesResult>,
+                response: Response<VehiclesResult>
+            ) {
                 val jsonResult = response.body()
                 if (jsonResult != null) {
                     for (vehicle in jsonResult.listings) {
@@ -62,5 +71,11 @@ class MainFragment : Fragment() {
                 LogUtils.log("Network error: %s", t.message)
             }
         })
+    }
+
+    override fun onClick(holder: View) {
+        val transaction = activity?.supportFragmentManager?.beginTransaction()
+        transaction?.replace(R.id.main_container, DetailFragment(holder))
+        transaction?.commit()
     }
 }

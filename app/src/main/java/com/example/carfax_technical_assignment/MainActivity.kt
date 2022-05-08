@@ -6,7 +6,7 @@ import android.view.View
 import com.example.carfax_technical_assignment.ui.DetailFragment
 import com.example.carfax_technical_assignment.ui.MainFragment
 
-class MainActivity : AppCompatActivity(), ClickHandler {
+class MainActivity : AppCompatActivity(), ClickHandler{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity(), ClickHandler {
     }
 
     override fun onClick(holder: View) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, DetailFragment(holder))
-            .commit()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_container, DetailFragment(holder))
+        transaction.commit()
     }
 }

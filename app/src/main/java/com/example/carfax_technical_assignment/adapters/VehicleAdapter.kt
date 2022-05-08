@@ -16,7 +16,7 @@ import com.example.carfax_technical_assignment.model.Vehicle
 import com.example.carfax_technical_assignment.util.LogUtils
 import com.google.android.material.snackbar.Snackbar
 
-class VehicleAdapter(val context: Context) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
+class VehicleAdapter(private val context: Context) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
 
     private val clickHandler: ClickHandler = context as ClickHandler
     private var vehicleDataset: MutableList<Vehicle> = mutableListOf()
@@ -69,6 +69,10 @@ class VehicleAdapter(val context: Context) : RecyclerView.Adapter<VehicleAdapter
         callButton.setOnClickListener {
             Snackbar.make(it, "Replace with call action.", Snackbar.LENGTH_SHORT)
                 .show()
+        }
+
+        holder.itemView.setOnClickListener {
+            println("What is it? $it")
         }
     }
 

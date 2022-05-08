@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.example.carfax_technical_assignment.R
 
 class DetailFragment(private val vehicleView: View) : Fragment() {
@@ -32,7 +31,7 @@ class DetailFragment(private val vehicleView: View) : Fragment() {
     }
 
     private fun renderImage() {
-        Glide.with(requireContext())
-            .load(vehicleView.context)
+//        Glide.with(requireContext())
+//            .load(vehicleView.context)
     }
 }
