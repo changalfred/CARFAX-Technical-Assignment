@@ -34,7 +34,6 @@ class VehicleAdapter(val context: Context) : RecyclerView.Adapter<VehicleAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val vehicle = vehicleDataset[position]
-        println("Vehicle: $vehicle")
 
         val image = holder.image
         Glide.with(context)

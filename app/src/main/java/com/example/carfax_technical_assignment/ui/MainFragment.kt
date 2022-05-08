@@ -38,11 +38,9 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = VehicleAdapter(requireContext())
         recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
 
         getVehiclesFromNetwork()
-        println("Dataset: $vehicleDataset")
-
-        recyclerView.setHasFixedSize(true)
 
         return rootView
     }

@@ -3,7 +3,6 @@ package com.example.carfax_technical_assignment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.carfax_technical_assignment.adapters.VehicleAdapter
 import com.example.carfax_technical_assignment.ui.DetailFragment
 import com.example.carfax_technical_assignment.ui.MainFragment
 
