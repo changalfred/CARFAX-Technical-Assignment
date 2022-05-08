@@ -2,5 +2,7 @@
 <resources>
 
     <dimen name="card_radius">5dp</dimen>
+    <dimen name="divider_margin">5dp</dimen>
+    <dimen name="vehicle_info_header_size">16sp</dimen>
 
 </resources>

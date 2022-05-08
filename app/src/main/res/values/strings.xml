@@ -4,4 +4,15 @@
 
     <string name="straight_slash">|</string>
     <string name="call_dealer_button_text">CALL DEALER</string>
+    <string name="vehicle_info">Vehicle Info</string>
+
+    <string name="vehicle_location">Location</string>
+    <string name="vehicle_exterior_colour">Exterior Color</string>
+    <string name="vehicle_interior_colour">Interior Color</string>
+    <string name="vehicle_drive_type">Drive Type</string>
+    <string name="vehicle_transmission">Transmission</string>
+    <string name="vehicle_body_style">Body Style</string>
+    <string name="vehicle_engine">Engine</string>
+    <string name="vehicle_fuel">Fuel</string>
+
 </resources>
