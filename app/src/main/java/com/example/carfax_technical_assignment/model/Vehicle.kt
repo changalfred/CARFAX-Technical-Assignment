@@ -16,6 +16,7 @@ data class Vehicle(
     var drivetype: String?,
     var transmission: String?,
     var bodytype: String?,
+    var fuel: String?
 )
 
 data class Dealer(
