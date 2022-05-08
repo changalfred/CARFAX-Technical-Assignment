@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.carfax_technical_assignment.ClickHandler
 import com.example.carfax_technical_assignment.R
 import com.example.carfax_technical_assignment.model.Vehicle
 import com.example.carfax_technical_assignment.util.LogUtils
@@ -17,13 +18,18 @@ import com.google.android.material.snackbar.Snackbar
 
 class VehicleAdapter(val context: Context) : RecyclerView.Adapter<VehicleAdapter.ViewHolder>() {
 
+    private val clickHandler: ClickHandler = context as ClickHandler
     private var vehicleDataset: MutableList<Vehicle> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.vehicle_row_item, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val itemView = inflater.inflate(R.layout.vehicle_row_item, parent, false)
 
-        return ViewHolder(view)
+        return ViewHolder(itemView).also {
+            itemView.setOnClickListener {
+                clickHandler.onClick(it)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -33,7 +39,6 @@ class VehicleAdapter(val context: Context) : RecyclerView.Adapter<VehicleAdapter
         val image = holder.image
         Glide.with(context)
             .load(vehicle.images?.firstPhoto?.large)
-//            .placeholder(R.color.white)
             .into(image)
 
         val year = holder.year
